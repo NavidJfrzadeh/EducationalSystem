@@ -1,0 +1,39 @@
+﻿@{
+    Layout = "~/Views/Shared/_StudentLayout.cshtml"; 
+}
+
+@using EducationalSystem.Entities
+@model List<Course>
+
+    <h1>All Courses:</h1>
+    <div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered table-sm ">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Teacher Name</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">Capacity</th>
+                <th scope="col">Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var course in @Model)
+                {
+                    <tr class="mb-2">
+                        <th>@course.Id</th>
+                        <td>@course.Name</td>
+                        <td>@course.Teacher.FirstName  @course.Teacher.LastName</td>
+                        <td>@course.StartDate</td>
+                        <td>@course.Capacity</td>
+                        <td class="text-center">
+                            <a class="btn btn-primary" asp-action="RegisterCourse" asp-route-id="@course.Id">Register</a>
+                        </td>
+                    </tr>
+                }
+
+        </tbody>
+
+    </table>
+</div>

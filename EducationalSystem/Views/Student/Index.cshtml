@@ -1,0 +1,19 @@
+﻿@using EducationalSystem.Emuns
+@{
+    // var userRole = ViewData["UserRole"] as string;
+    // Layout = userRole == "student" ? "~/Views/Shared/_StudentLayout.cshtml" : "~/Views/Shared/_TeacherLayout.cshtml";
+
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+
+@using EducationalSystem.Entities;
+@model Student
+
+<body class= "bg-secondary bg-opacity-25">
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @Model.FirstName</h1>
+</div>
+
+</body>

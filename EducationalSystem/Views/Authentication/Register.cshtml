@@ -1,0 +1,46 @@
+﻿@using EducationalSystem.Entities;
+@model RegisterDTO
+
+<body class="bg-success bg-opacity-50">
+
+    <div class="container bg-light col-lg-4 border border-4 rounded mt-5">
+        <h2 class="text-center py-2">Sign Up Form</h2>
+                <form asp-controller="Authentication" asp-action="SaveUser" method="post">
+                    <div class="mb-3">
+                        <label asp-for="FirstName" class="form-label">FirstName</label>
+                        <input type="text" class="form-control" asp-for="FirstName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="LastName" class="form-label">LastName</label>
+                        <input type="text" asp-for="LastName" class="form-control" requried>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" asp-for="Email" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <input type="password" class="form-control" asp-for="Password" required>
+                    </div>
+                    <p>Select your Role:</p>
+                     <div class="form-check mb-3">
+                           <input class="form-check-input" type="radio" name="Role" id="flexRadioDefault1" value="teacher">
+                           <label class="form-check-label" for="flexRadioDefault1">
+                             teacher
+                           </label>
+                         </div>
+                         <div class="form-check">
+                           <input class="form-check-input" type="radio" name="Role" id="flexRadioDefault2" value="student" checked>
+                           <label class="form-check-label" for="flexRadioDefault2">
+                             student
+                           </label>
+                       </div>
+
+                    <div class="d-grid gap-3 my-3">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+     </div>
+
+</body>

@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<body class= "bg-secondary bg-opacity-25">
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <div>
+        <p class="mb-4 fs-4">Please Login to your account</p>
+        <a class="me-3" asp-controller="Authentication" asp-action="Login"><button class="btn btn-outline-primary">Login</button></a>
+        <a asp-controller="Authentication" asp-action="Register"><button class="btn btn-outline-primary">Register</button></a>
+    </div>
+</div>
+
+</body>
