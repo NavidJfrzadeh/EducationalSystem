@@ -20,6 +20,12 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+//app.MapControllerRoute(
+//    name: "Student",
+//    pattern: "{controller=Student}/{action=Index}/{id?}",
+//    constraints: new { id = @"\d+" });
+
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -30,7 +30,7 @@ namespace EducationalSystem.Controllers
             Memory.teachers = DataAccess<Teacher>.LoadFile(_teacherPath);
             //Memory.students = DataAccess<Student>.LoadFile(_studentPath);
             Memory.courses = DataAccess<Course>.LoadFile(_coursePath);
-            var targetTeacher = Memory.teachers.FirstOrDefault(e => e.Email == courseModel.TeacherEmail);
+            var targetTeacher = Memory.teachers.FirstOrDefault(e => e.Email == Memory.ActiveTeacher.Email);
 
             if (targetTeacher != null)
             {
@@ -59,26 +59,23 @@ namespace EducationalSystem.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult CourseDetails(int courseId)
+        [HttpGet]
+        public IActionResult CourseDetails(int id)
         {
             Memory.courses = DataAccess<Course>.LoadFile(_coursePath);
-            var targetCourse = Memory.courses.FirstOrDefault(e => e.Id == courseId);
+            var targetCourse = Memory.courses.FirstOrDefault(e => e.Id == id);
             if (targetCourse != null)
             {
-                return View(targetCourse);
+                GradeModel model = new GradeModel()
+                {
+                    Course = targetCourse
+                };
+                return View(model);
             }
 
             return NotFound();
         }
 
-
-        [HttpGet]
-        public IActionResult ShowStudents()
-        {
-            Memory.students = DataAccess<Student>.LoadFile(_studentPath);
-            return View(Memory.students);
-        }
 
         [HttpPost]
         public IActionResult SetGrade(GradeModel gradeModel)
@@ -88,12 +85,36 @@ namespace EducationalSystem.Controllers
             if (studentCourse != null)
             {
                 studentCourse.Grade = gradeModel.Grade;
-                return RedirectToAction("ShowStudnets");
+                DataAccess<Student>.SaveToFile(Memory.students, _studentPath);
+                return RedirectToAction("Index");
             }
             else
             {
                 return NotFound();
             }
+        }
+
+
+
+        [HttpGet]
+        public IActionResult RemoveCourse(int id)
+        {
+            Memory.courses = DataAccess<Course>.LoadFile(_coursePath);
+            Memory.students = DataAccess<Student>.LoadFile(_studentPath);
+
+            var targetCourse = Memory.courses.FirstOrDefault(e => e.Id == id);
+            if (targetCourse != null)
+            {
+                Memory.courses.Remove(targetCourse);
+                DataAccess<Course>.SaveToFile(Memory.courses, _coursePath);
+
+                //var coursesToDelete = Memory.students.Select(d => d.Courses.Where(x => x.Course.Id == id).ToList()).ToList();
+                Memory.students.Select(d => d.Courses.RemoveAll(x => x.Course.Id == id));
+                DataAccess<Student>.SaveToFile(Memory.students, _studentPath);
+                return RedirectToAction("GetAllCourse");
+            }
+
+            return NotFound();
         }
     }
 }

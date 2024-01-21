@@ -30,10 +30,8 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="GetAllCourse">All Courses</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="ShowStudents">All Students</a>
-                        </li>
                     </ul>
+                    <span class="d-flex" role="link"><a class="btn btn-danger" asp-controller="Home" asp-action="Index">Logout</a></span>
                 </div>
             </div>
         </nav>
@@ -47,9 +45,6 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2024 - EducationalSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-        <div class="container">
-            <a asp-area="" asp-controller="Home" asp-action="Index">Login Page</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -3,30 +3,38 @@
 }
 
 @using EducationalSystem.Entities
-@model Course
+@model GradeModel
 
 
 <div class="container mt-5">
-    <h2>@Model.Name Students</h2>
-<table class="table table-hover table-borderd table-responsive table-striped">
-    <thead>
-        <tr>
-            <th>Student ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-        </tr>
-    </thead>
-    <tbody>
-            @foreach (var student in Model.StudetnsWhoRegister)
+    <h2>@Model.Course.Name Students</h2>
+    <table class="table table-hover table-borderd table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model.Course.StudetnsWhoRegister)
             {
                 <tr>
                     <td>@student.Id</td>
                     <td>@student.FirstName</td>
                     <td>@student.LastName</td>
-                    <td></td>
+                    <td>
+                        <form asp-controller="Teacher" asp-action="SetGrade" method="post">
+                            <input type="hidden" asp-for=@Model.CourseId value=@Model.Course.Id />
+                            <input type="hidden" asp-for=@Model.StudentId value=@student.Id />
+                            <input type="number" asp-for=@Model.Grade placeholder="Enter Grade" />
+                            <input type="submit" class="btn btn-sm btn-warning" value="Save" />
+                        </form>
+                    </td>
                 </tr>
             }
-    </tbody>
-</table>
+        </tbody>
+    </table>
 
 </div>

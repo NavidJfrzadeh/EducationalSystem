@@ -9,7 +9,44 @@
     "Role": 0
   },
   {
-    "Courses": null,
+    "Courses": [
+      {
+        "Course": {
+          "Id": 2,
+          "Name": "Data Base",
+          "StartDate": "2024-01-09T22:07:00",
+          "Capacity": 9,
+          "Teacher": {
+            "Id": 1,
+            "FirstName": "teacher3",
+            "LastName": "lastName",
+            "Email": "teacher@gmail.com",
+            "Password": "123",
+            "Role": 1
+          },
+          "StudetnsWhoRegister": []
+        },
+        "Grade": null
+      },
+      {
+        "Course": {
+          "Id": 1,
+          "Name": "algorithm",
+          "StartDate": "2024-01-10T21:25:00",
+          "Capacity": 2,
+          "Teacher": {
+            "Id": 1,
+            "FirstName": "teacher3",
+            "LastName": "lastName",
+            "Email": "teacher@gmail.com",
+            "Password": "123",
+            "Role": 1
+          },
+          "StudetnsWhoRegister": []
+        },
+        "Grade": 20.0
+      }
+    ],
     "Id": 2,
     "FirstName": "navid",
     "LastName": "jafarzadeh",

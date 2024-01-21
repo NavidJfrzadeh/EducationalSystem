@@ -49,10 +49,10 @@ namespace EducationalSystem.Controllers
             var currentStudnet = Memory.students.FirstOrDefault(e => e.Id == Memory.ActiveStudent.Id);
             //check if  course is not available in students courses
             var CourseIsAvailbale = false;
-            if (currentStudnet.Courses != null)
-            {
-                CourseIsAvailbale = Memory.courses.Any(x => Memory.ActiveStudent.Courses.Any(y => y.Course.Id == x.Id));
-            }
+            //if (currentStudnet.Courses != null)
+            //{
+            //    CourseIsAvailbale = Memory.courses.Any(x => currentStudnet.Courses.Any(y => y.Course.Id == x.Id));
+            //}
 
             if (!CourseIsAvailbale)
             {
@@ -64,9 +64,14 @@ namespace EducationalSystem.Controllers
                         Grade = null,
                         Course = targetCourse
                     };
+                    currentStudnet.Courses ??= new List<StudentCourse>();
+
                     targetCourse.Capacity--;
-                    currentStudnet.Courses = new List<StudentCourse> { courseForRegister };
-                    //currentStudnet.Courses.Add(courseForRegister);
+                    currentStudnet.Courses.Add(courseForRegister);
+                    targetCourse.StudetnsWhoRegister.Add(currentStudnet);
+
+                    DataAccess<Course>.SaveToFile(Memory.courses, _coursePath);
+                    DataAccess<Student>.SaveToFile(Memory.students, _studentPath);
                     return RedirectToAction("Index");
                 }
 

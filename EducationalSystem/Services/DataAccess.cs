@@ -34,7 +34,7 @@ namespace EducationalSystem.Services
 
         public static void SaveToFile(List<T> objList, string filePath)
         {
-            var jsonData = JsonConvert.SerializeObject(objList, Formatting.Indented);
+            var jsonData = JsonConvert.SerializeObject(objList, Formatting.Indented, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
             File.WriteAllText(filePath, jsonData);
         }
 
