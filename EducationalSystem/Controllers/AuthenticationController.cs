@@ -77,14 +77,14 @@ namespace EducationalSystem.Controllers
             Memory.teachers = DataAccess<Teacher>.LoadFile(_teacherPath);
 
 
-            Memory.ActiveStudent = Memory.students.FirstOrDefault(x => x.Email == loginModel.Email);
-            Memory.ActiveTeacher = Memory.teachers.FirstOrDefault(x => x.Email == loginModel.Email);
+            Memory.ActiveStudent = Memory.students.FirstOrDefault(x => x.Email == loginModel.Email && x.Password == loginModel.Password);
+            Memory.ActiveTeacher = Memory.teachers.FirstOrDefault(x => x.Email == loginModel.Email && x.Password == loginModel.Password);
 
 
             if (Memory.ActiveStudent != null)
             {
                 //ViewBag.Layout = "~/Views/Shared/_StudentLayout.cshtml";
-                ViewData["UserRole"] = Memory.ActiveStudent.Role;
+                //ViewData["UserRole"] = Memory.ActiveStudent.Role;
                 return RedirectToAction("Index", "Student");
             }
 

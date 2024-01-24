@@ -44,10 +44,10 @@ namespace EducationalSystem.Controllers
 
                 Memory.courses.Add(newCourse);
                 DataAccess<Course>.SaveToFile(Memory.courses, _coursePath);
-                return RedirectToAction("Index");
+                return RedirectToAction("GetAllCourse");
             }
 
-            return NotFound();
+            return View("Index");
         }
 
 
@@ -81,7 +81,9 @@ namespace EducationalSystem.Controllers
         public IActionResult SetGrade(GradeModel gradeModel)
         {
             Memory.students = DataAccess<Student>.LoadFile(_studentPath);
-            var studentCourse = Memory.students.FirstOrDefault(e => e.Id == gradeModel.StudentId).Courses.FirstOrDefault(x => x.Course.Id == gradeModel.CourseId);
+            var studentCourse = Memory.students
+                .FirstOrDefault(e => e.Id == gradeModel.StudentId).Courses
+                .FirstOrDefault(x => x.Course.Id == gradeModel.CourseId);
             if (studentCourse != null)
             {
                 studentCourse.Grade = gradeModel.Grade;

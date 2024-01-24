@@ -1,44 +1,17 @@
 [
   {
-    "Courses": null,
-    "Id": 1,
-    "FirstName": "ali",
-    "LastName": "aliee",
-    "Email": "ali@gmail.com",
-    "Password": "321",
-    "Role": 0
-  },
-  {
     "Courses": [
       {
         "Course": {
-          "Id": 2,
-          "Name": "Data Base",
-          "StartDate": "2024-01-09T22:07:00",
-          "Capacity": 9,
+          "Id": 3,
+          "Name": "course3",
+          "StartDate": "2024-01-03T16:47:00",
+          "Capacity": 10,
           "Teacher": {
-            "Id": 1,
-            "FirstName": "teacher3",
-            "LastName": "lastName",
-            "Email": "teacher@gmail.com",
-            "Password": "123",
-            "Role": 1
-          },
-          "StudetnsWhoRegister": []
-        },
-        "Grade": null
-      },
-      {
-        "Course": {
-          "Id": 1,
-          "Name": "algorithm",
-          "StartDate": "2024-01-10T21:25:00",
-          "Capacity": 2,
-          "Teacher": {
-            "Id": 1,
-            "FirstName": "teacher3",
-            "LastName": "lastName",
-            "Email": "teacher@gmail.com",
+            "Id": 2,
+            "FirstName": "teacher2",
+            "LastName": "lastName2",
+            "Email": "teacher2@gmail.com",
             "Password": "123",
             "Role": 1
           },
@@ -47,15 +20,24 @@
         "Grade": 20.0
       }
     ],
-    "Id": 2,
+    "Id": 1,
     "FirstName": "navid",
-    "LastName": "jafarzadeh",
+    "LastName": "Jafarzadeh",
     "Email": "navid@gmail.com",
     "Password": "123",
     "Role": 0
   },
   {
-    "Courses": null,
+    "Courses": [],
+    "Id": 2,
+    "FirstName": "Ali",
+    "LastName": "Alie",
+    "Email": "ali@gmail.com",
+    "Password": "123",
+    "Role": 0
+  },
+  {
+    "Courses": [],
     "Id": 3,
     "FirstName": "hasan",
     "LastName": "hasani",
@@ -64,11 +46,20 @@
     "Role": 0
   },
   {
-    "Courses": null,
+    "Courses": [],
     "Id": 4,
-    "FirstName": "student4",
-    "LastName": "ss",
-    "Email": "s@gmail.com",
+    "FirstName": "st4",
+    "LastName": "st4LastName",
+    "Email": "st4@gmail.com",
+    "Password": "123",
+    "Role": 0
+  },
+  {
+    "Courses": [],
+    "Id": 5,
+    "FirstName": "st5",
+    "LastName": "st5LastName",
+    "Email": "st5@gmail.com",
     "Password": "123",
     "Role": 0
   }

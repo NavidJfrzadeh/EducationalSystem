@@ -47,36 +47,29 @@ namespace EducationalSystem.Controllers
 
             //find active studnet
             var currentStudnet = Memory.students.FirstOrDefault(e => e.Id == Memory.ActiveStudent.Id);
-            //check if  course is not available in students courses
-            var CourseIsAvailbale = false;
-            //if (currentStudnet.Courses != null)
-            //{
-            //    CourseIsAvailbale = Memory.courses.Any(x => currentStudnet.Courses.Any(y => y.Course.Id == x.Id));
-            //}
+            //find target Course
+            var targetCourse = Memory.courses.FirstOrDefault(x => x.Id == Id);
 
-            if (!CourseIsAvailbale)
+            if (targetCourse == null)
+                return RedirectToAction("GetAllCourses");
+
+            if (targetCourse.Capacity > targetCourse.StudetnsWhoRegister.Count())
             {
-                var targetCourse = Memory.courses.FirstOrDefault(x => x.Id == Id);
-                if (targetCourse.Capacity > 0)
+                var courseForRegister = new StudentCourse()
                 {
-                    var courseForRegister = new StudentCourse()
-                    {
-                        Grade = null,
-                        Course = targetCourse
-                    };
-                    currentStudnet.Courses ??= new List<StudentCourse>();
+                    Grade = null,
+                    Course = targetCourse
+                };
+                currentStudnet.Courses ??= new List<StudentCourse>();
 
-                    targetCourse.Capacity--;
-                    currentStudnet.Courses.Add(courseForRegister);
-                    targetCourse.StudetnsWhoRegister.Add(currentStudnet);
+                currentStudnet.Courses.Add(courseForRegister);
+                targetCourse.StudetnsWhoRegister.Add(currentStudnet);
 
-                    DataAccess<Course>.SaveToFile(Memory.courses, _coursePath);
-                    DataAccess<Student>.SaveToFile(Memory.students, _studentPath);
-                    return RedirectToAction("Index");
-                }
-
+                DataAccess<Course>.SaveToFile(Memory.courses, _coursePath);
+                DataAccess<Student>.SaveToFile(Memory.students, _studentPath);
+                return RedirectToAction("Index");
             }
-            return NotFound();
+            return RedirectToAction("Index");
         }
 
 

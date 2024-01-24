@@ -11,6 +11,7 @@
    <table class="table table-striped table-hover table-bordered table-sm">
     <thead>
         <tr>
+            <th>Course Id</th>
             <th>Course Name</th>
             <th>Grade</th>
         </tr>
@@ -19,6 +20,7 @@
             @foreach (var course in Model)
             {
                  <tr>
+                     <td>@course.Course.Id</td>
                      <td>@course.Course.Name</td>
                      <td>@course.Grade</td>
                  </tr>

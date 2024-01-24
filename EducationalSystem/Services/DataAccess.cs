@@ -47,9 +47,10 @@ namespace EducationalSystem.Services
             }
             catch (FileNotFoundException)
             {
-
                 File.Create(filePath).Close();
-                return null;
+                File.WriteAllText(filePath, "[]");
+                var data = File.ReadAllText(filePath);
+                return JsonConvert.DeserializeObject<List<T>>(data);
 
 
                 //if (filePath == "Students.json")

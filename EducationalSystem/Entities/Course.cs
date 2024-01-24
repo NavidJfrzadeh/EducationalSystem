@@ -13,8 +13,6 @@
         public DateTime StartDate { get; set; }
         public int? Capacity { get; set; } = 0;
         public Teacher Teacher { get; set; }
-
-        //public string? TeachersName { get; set; }
         public List<Student> StudetnsWhoRegister { get; set; }
     }
 }
