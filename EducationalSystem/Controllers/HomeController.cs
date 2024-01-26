@@ -23,6 +23,11 @@ namespace EducationalSystem.Controllers
             return View();
         }
 
+        public IActionResult MyError()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

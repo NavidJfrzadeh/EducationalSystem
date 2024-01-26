@@ -1,4 +1,8 @@
-﻿@using EducationalSystem.Entities
+﻿@using EducationalSystem.Entities;
+
+@{
+    var PanelName = Memory.ActiveTeacher.FirstName + "`s";
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +16,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-warning bg-opacity-50 border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Teacher" asp-action="Index">@Memory.ActiveTeacher.FirstName Panel</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Teacher" asp-action="Index">@PanelName Panel</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -29,6 +33,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="GetAllCourse">All Courses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="GetTeacherCourses">My Courses</a>
                         </li>
                     </ul>
                     <span class="d-flex" role="link"><a class="btn btn-danger" asp-controller="Home" asp-action="Index">Logout</a></span>

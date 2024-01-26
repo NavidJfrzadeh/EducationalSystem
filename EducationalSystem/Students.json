@@ -5,9 +5,10 @@
         "Course": {
           "Id": 3,
           "Name": "course3",
-          "StartDate": "2024-01-03T16:47:00",
-          "Capacity": 10,
+          "StartDate": "2024-01-03T20:08:00",
+          "Capacity": 2,
           "Teacher": {
+            "courses": [],
             "Id": 2,
             "FirstName": "teacher2",
             "LastName": "lastName2",
@@ -17,7 +18,7 @@
           },
           "StudetnsWhoRegister": []
         },
-        "Grade": 20.0
+        "Grade": null
       }
     ],
     "Id": 1,
@@ -28,38 +29,40 @@
     "Role": 0
   },
   {
-    "Courses": [],
+    "Courses": [
+      {
+        "Course": {
+          "Id": 2,
+          "Name": "course2",
+          "StartDate": "2024-01-02T20:08:00",
+          "Capacity": 5,
+          "Teacher": {
+            "courses": [
+              {
+                "Id": 1,
+                "Name": "course1",
+                "StartDate": "2024-01-01T20:07:00",
+                "Capacity": 10,
+                "Teacher": null,
+                "StudetnsWhoRegister": []
+              }
+            ],
+            "Id": 1,
+            "FirstName": "teacher1",
+            "LastName": "lastName1",
+            "Email": "teacher1@gmail.com",
+            "Password": "123",
+            "Role": 1
+          },
+          "StudetnsWhoRegister": []
+        },
+        "Grade": 19.0
+      }
+    ],
     "Id": 2,
-    "FirstName": "Ali",
-    "LastName": "Alie",
-    "Email": "ali@gmail.com",
-    "Password": "123",
-    "Role": 0
-  },
-  {
-    "Courses": [],
-    "Id": 3,
-    "FirstName": "hasan",
-    "LastName": "hasani",
-    "Email": "hasan@gmail.com",
-    "Password": "123",
-    "Role": 0
-  },
-  {
-    "Courses": [],
-    "Id": 4,
-    "FirstName": "st4",
-    "LastName": "st4LastName",
-    "Email": "st4@gmail.com",
-    "Password": "123",
-    "Role": 0
-  },
-  {
-    "Courses": [],
-    "Id": 5,
-    "FirstName": "st5",
-    "LastName": "st5LastName",
-    "Email": "st5@gmail.com",
+    "FirstName": "Amir",
+    "LastName": "Amiri",
+    "Email": "amir@gmail.com",
     "Password": "123",
     "Role": 0
   }

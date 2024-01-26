@@ -1,5 +1,23 @@
 [
   {
+    "courses": [
+      {
+        "Id": 1,
+        "Name": "course1",
+        "StartDate": "2024-01-01T20:07:00",
+        "Capacity": 10,
+        "Teacher": null,
+        "StudetnsWhoRegister": []
+      },
+      {
+        "Id": 2,
+        "Name": "course2",
+        "StartDate": "2024-01-02T20:08:00",
+        "Capacity": 5,
+        "Teacher": null,
+        "StudetnsWhoRegister": []
+      }
+    ],
     "Id": 1,
     "FirstName": "teacher1",
     "LastName": "lastName1",
@@ -7,7 +25,16 @@
     "Password": "123",
     "Role": 1
   },
-{
+  {
+    "courses": [
+      {
+        "Id": 3,
+        "Name": "course3",
+        "StartDate": "2024-01-03T20:08:00",
+        "Capacity": 2,
+        "StudetnsWhoRegister": []
+      }
+    ],
     "Id": 2,
     "FirstName": "teacher2",
     "LastName": "lastName2",

@@ -1,6 +1,8 @@
-﻿using EducationalSystem.Entities;
+﻿using EducationalSystem.Emuns;
+using EducationalSystem.Entities;
 using EducationalSystem.Models;
 using EducationalSystem.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EducationalSystem.Controllers
@@ -10,9 +12,14 @@ namespace EducationalSystem.Controllers
         private string _studentPath = Directory.GetCurrentDirectory() + "\\Students.json";
         private string _teacherPath = Directory.GetCurrentDirectory() + "\\Teachers.json";
         private string _coursePath = Directory.GetCurrentDirectory() + "\\Courses.json";
-
+        //[Authorize(Roles = "Teacher")]
         public IActionResult Index()
         {
+            if (Memory.ActiveStudent != null)
+            {
+                return RedirectToAction("MyError", "Home");
+            }
+            //ViewData["TeacherName"] = Memory.ActiveTeacher.FirstName;
             return View(Memory.ActiveTeacher);
         }
 
@@ -20,6 +27,10 @@ namespace EducationalSystem.Controllers
         [HttpGet]
         public IActionResult AddCourse()
         {
+            if (Memory.ActiveStudent != null)
+            {
+                return RedirectToAction("MyError", "Home");
+            }
             return View();
         }
 
@@ -28,8 +39,8 @@ namespace EducationalSystem.Controllers
         public IActionResult SaveCourse(CourseDTO courseModel)
         {
             Memory.teachers = DataAccess<Teacher>.LoadFile(_teacherPath);
-            //Memory.students = DataAccess<Student>.LoadFile(_studentPath);
             Memory.courses = DataAccess<Course>.LoadFile(_coursePath);
+
             var targetTeacher = Memory.teachers.FirstOrDefault(e => e.Email == Memory.ActiveTeacher.Email);
 
             if (targetTeacher != null)
@@ -42,13 +53,31 @@ namespace EducationalSystem.Controllers
                     Teacher = targetTeacher
                 };
 
+                targetTeacher.courses.Add(newCourse);
                 Memory.courses.Add(newCourse);
+                DataAccess<Teacher>.SaveToFile(Memory.teachers, _teacherPath);
                 DataAccess<Course>.SaveToFile(Memory.courses, _coursePath);
                 return RedirectToAction("GetAllCourse");
             }
 
             return View("Index");
         }
+
+
+
+        [HttpGet]
+        public IActionResult GetTeacherCourses()
+        {
+            if (Memory.ActiveStudent != null)
+            {
+                return RedirectToAction("MyError", "Home");
+            }
+            Memory.teachers = DataAccess<Teacher>.LoadFile(_teacherPath);
+            var teacherCourses = Memory.teachers.FirstOrDefault(x => x.Id == Memory.ActiveTeacher.Id).courses;
+            ViewBag.TeacherName = Memory.ActiveTeacher.FirstName;
+            return View(teacherCourses);
+        }
+
 
 
         [HttpGet]
@@ -62,6 +91,10 @@ namespace EducationalSystem.Controllers
         [HttpGet]
         public IActionResult CourseDetails(int id)
         {
+            if (Memory.ActiveStudent != null)
+            {
+                return RedirectToAction("MyError", "Home");
+            }
             Memory.courses = DataAccess<Course>.LoadFile(_coursePath);
             var targetCourse = Memory.courses.FirstOrDefault(e => e.Id == id);
             if (targetCourse != null)
@@ -81,9 +114,7 @@ namespace EducationalSystem.Controllers
         public IActionResult SetGrade(GradeModel gradeModel)
         {
             Memory.students = DataAccess<Student>.LoadFile(_studentPath);
-            var studentCourse = Memory.students
-                .FirstOrDefault(e => e.Id == gradeModel.StudentId).Courses
-                .FirstOrDefault(x => x.Course.Id == gradeModel.CourseId);
+            var studentCourse = Memory.students.FirstOrDefault(e => e.Id == gradeModel.StudentId).Courses.FirstOrDefault(x => x.Course.Id == gradeModel.CourseId);
             if (studentCourse != null)
             {
                 studentCourse.Grade = gradeModel.Grade;
@@ -101,6 +132,10 @@ namespace EducationalSystem.Controllers
         [HttpGet]
         public IActionResult RemoveCourse(int id)
         {
+            if (Memory.ActiveStudent != null)
+            {
+                return RedirectToAction("MyError", "Home");
+            }
             Memory.courses = DataAccess<Course>.LoadFile(_coursePath);
             Memory.students = DataAccess<Student>.LoadFile(_studentPath);
 
@@ -117,6 +152,18 @@ namespace EducationalSystem.Controllers
             }
 
             return NotFound();
+        }
+
+
+
+        [HttpGet]
+        public IActionResult GetProfile()
+        {
+            if (Memory.ActiveStudent != null)
+            {
+                return RedirectToAction("MyError", "Home");
+            }
+            return View(Memory.ActiveTeacher);
         }
     }
 }

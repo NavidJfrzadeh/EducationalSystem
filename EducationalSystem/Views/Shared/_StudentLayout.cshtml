@@ -1,4 +1,7 @@
-﻿@using EducationalSystem.Entities
+﻿@using EducationalSystem.Entities;
+@{
+    var panelName = Memory.ActiveStudent.FirstName + "`s";
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +15,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-info bg-opacity-50 border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Student" asp-action="Index">@Memory.ActiveStudent.FirstName Panel</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Student" asp-action="Index">@panelName Panel</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

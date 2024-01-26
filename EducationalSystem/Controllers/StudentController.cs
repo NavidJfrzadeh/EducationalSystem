@@ -14,6 +14,11 @@ namespace EducationalSystem.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            if (Memory.ActiveTeacher != null)
+            {
+                return RedirectToAction("MyError", "Home");
+            }
+            //ViewData["StudentName"] = Memory.ActiveStudent.FirstName;
             return View(Memory.ActiveStudent);
         }
 
@@ -21,6 +26,11 @@ namespace EducationalSystem.Controllers
         [HttpGet]
         public IActionResult GetAllCourses()
         {
+            if (Memory.ActiveTeacher != null)
+            {
+                return RedirectToAction("MyError", "Home");
+            }
+
             try
             {
                 Memory.students = DataAccess<Student>.LoadFile(_studentPath);
@@ -42,6 +52,11 @@ namespace EducationalSystem.Controllers
         [HttpGet]
         public IActionResult RegisterCourse(int Id)
         {
+            if (Memory.ActiveTeacher != null)
+            {
+                return RedirectToAction("MyError", "Home");
+            }
+
             Memory.students = DataAccess<Student>.LoadFile(_studentPath);
             Memory.courses = DataAccess<Course>.LoadFile(_coursePath);
 
@@ -67,7 +82,7 @@ namespace EducationalSystem.Controllers
 
                 DataAccess<Course>.SaveToFile(Memory.courses, _coursePath);
                 DataAccess<Student>.SaveToFile(Memory.students, _studentPath);
-                return RedirectToAction("Index");
+                return RedirectToAction("StudentCourses");
             }
             return RedirectToAction("Index");
         }
@@ -76,6 +91,11 @@ namespace EducationalSystem.Controllers
         [HttpGet]
         public IActionResult StudentCourses()
         {
+            if (Memory.ActiveTeacher != null)
+            {
+                return RedirectToAction("MyError", "Home");
+            }
+
             //Memory.students = DataAccess<Student>.LoadFile(_studentPath);
             ViewBag.StudentName = Memory.ActiveStudent.FirstName;
             var currentStudnet = Memory.students.FirstOrDefault(e => e.Id == Memory.ActiveStudent.Id);
